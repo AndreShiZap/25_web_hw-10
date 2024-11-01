@@ -1,0 +1,113 @@
+.quote {
+    padding: 10px;
+    margin-bottom: 30px;
+    border: 1px solid #333333;
+    border-radius: 5px;
+    box-shadow: 2px 2px 3px #333333;
+}
+
+.quote span.text {
+    display: block;
+    margin-bottom: 5px;
+    font-size: large;
+    font-style: italic;
+}
+
+.quote small.author {
+    font-weight: bold;
+    color: #3677E8;
+}
+
+.quote .tags {
+    margin-top: 10px;
+}
+
+.tag {
+    padding: 2px 5px;
+    border-radius: 5px;
+    color: white;
+    font-size: small;
+    background-color: #7CA3E6;
+}
+
+.pager {
+    font-family: "Raleway","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+.pager {
+    padding-left: 0;
+    margin: 22px 0;
+    list-style: none;
+    text-align: center;
+}
+
+.pager li {
+    display: inline;
+}
+
+.pager .next>a, .pager .next>span {
+    float: right;
+}
+
+.pager .previous>a, .pager .previous>span {
+    float: left;
+}
+
+.pager li>a, .pager li>span {
+    display: inline-block;
+    padding: 5px 14px;
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 15px;
+}
+
+.disabled {
+    color: #ffffff;
+    cursor: not-allowed;
+}
+
+.author-details {
+    width: 80%;
+}
+
+.author-description {
+    text-align: justify;
+    margin-bottom: 20px;
+}
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.top-tags {
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.top-tags h3 {
+    margin-bottom: 15px;
+    text-align: right;
+}
+
+.top-tags .tags-list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.top-tags .tag-item {
+    margin-bottom: 6px;
+}
+
+.top-tags .tag {
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.top-tags .tag:hover {
+    color: #0056b3;
+    transform: scale(1.1);
+}
