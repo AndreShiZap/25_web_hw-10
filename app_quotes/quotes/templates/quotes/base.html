@@ -10,30 +10,38 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'quotes/style.css' %}">
     <title>Homework Quotes</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <div class="container">
     <div class="row header-box pt-3 mb-3">
-        <div class="col-md-8">
+        <div class="col-md-7">
             <h1>
                 <a href="/" style="text-decoration: none">Quotes to Scrape</a>
             </h1>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-5">
             <p>
                 {% if user.is_authenticated %}
-                <form method="post" action="{% url 'users:logout' %}" style="display: inline;">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-primary">Logout</button>
-                </form>
-                <a href="{% url 'quotes:add_quote' %}" class="btn btn-primary">Add Quote</a>
-                <a href="{% url 'quotes:author_add' %}" class="btn btn-primary">Add Author</a>
+            <form method="post" action="{% url 'users:logout' %}" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-info">Logout</button>
+            </form>
+            <a href="{% url 'quotes:add_quote' %}" class="btn btn-primary">Add Quote</a>
+            <a href="{% url 'quotes:author_add' %}" class="btn btn-primary">Add Author</a>
+            <a href="{% url 'quotes:run_spider' %}" class="btn btn-warning">Start Scrapy</a>
 
-                {% else %}
-                <a href="{% url 'users:register' %}" class="btn btn-primary">SignUp</a>
-                <a href="{% url 'users:login' %}" class="btn btn-primary">Login</a>
+            {% else %}
+            <a href="{% url 'users:register' %}" class="btn btn-primary">SignUp</a>
+            <a href="{% url 'users:login' %}" class="btn btn-primary">Login</a>
             {% endif %}
-
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
         </div>
     </div>
 
@@ -41,5 +49,17 @@
     {% block content %} {% endblock %}
 
 </div>
+<script>
+    {% if is_spider_running %}
+        function checkSpiderStatus() {
+            $.get("{% url 'quotes:check_spider_status' %}", function(data) {
+                if (!data.is_spider_running) {
+                    location.reload();
+                }
+            });
+        }
+        setInterval(checkSpiderStatus, 3000);
+    {% endif %}
+</script>
 </body>
 </html>
